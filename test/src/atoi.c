@@ -1,8 +1,4 @@
 #include<stdlib.h>
-#include<stdio.h>
-#include<stdarg.h>
-#include<string.h>
-
 #include"libft.h"
 
 #define getfn(ptr, output, ...) ((output(*)(__VA_ARGS__)) ptr)
@@ -18,15 +14,9 @@ int test_atoi(const char *arg)
 	return test_result;
 }
 
-int test_bzero(void *str, size_t len)
+int main(int ac, char **av)
 {
-	char *str2;
-	int test_result;
-
-	str2 = (char *)malloc(strlen(str) + 1);
-	str2 = strcpy(str2,str);
-	getfn(&bzero, int, void*, size_t)(str, len);
-	getfn(&ft_bzero, int, void*, size_t)(str2, len);
-	test_result = strcmp(str,str2);
-	return test_result;
+	int nbr;
+	test_atoi(av[1]);
+	return (0);
 }

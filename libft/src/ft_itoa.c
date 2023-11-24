@@ -17,16 +17,14 @@ static int nbr_of_digits(n)
 	return (i);
 }
 
-static void _itoa(char *memory, int n)
+static void _itoa(char **memory, int n)
 {
 	if (n > 9)
 	{
 		_itoa(memory, n / 10);
-		memory++;
+		*memory = *memory + 1;
 	}
-	*memory = (n % 10) + '0';
-	printf("memory : %s\n", memory);
-	printf("adress : %p\n", memory);
+	**memory = (n % 10) + '0';
 }
 
 char *ft_itoa(int n)
@@ -35,12 +33,9 @@ char *ft_itoa(int n)
 	char *memory;
 
 	size = nbr_of_digits(n);
-	printf("SIZE %i\n", size);
-
 	memory = (char *)malloc(size + 1);
-	_itoa(memory, n);
-	memory[size] = 0;
-	return memory;
+	_itoa(&memory, n);
+	return memory - size + 1;
 }
 
 int main(int ac, char **av)
