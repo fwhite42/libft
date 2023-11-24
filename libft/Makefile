@@ -18,17 +18,21 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf $(HEADER).gch
 
 $(OBJECT_DIRECTORY):
 	mkdir $@
 
 ./$(OBJECT_DIRECTORY)/ft_%.o : ./$(SOURCE_DIRECTORY)/ft_%.c $(OBJECT_DIRECTORY) ./$(SOURCE_DIRECTORY)/$(HEADER)
-	@echo compiling... $<:
-	@$(COMPILE) $(WITHOUT_LINKING)  $< -o $@ 
-	@echo ...done
+	echo compiling... $<:
+	$(COMPILE) $(WITHOUT_LINKING)  $< -o $@	
+	echo ...done
 
+test:
+	echo 
 $(NAME): all
-	@echo archiving...
-	@ar -r $(NAME) $(wildcard ./$(OBJECT_DIRECTORY)/*)
-	@echo ...done
+	echo archiving...
+	ar -r $(NAME) $(wildcard $(OBJECT_DIRECTORY)/*)
+
+	echo ...done
 .PHONY: all clean

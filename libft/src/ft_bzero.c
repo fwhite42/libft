@@ -6,12 +6,12 @@
 /*   By: fwhite <fuck_the_norm@four.two>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:11:21 by fwhite            #+#    #+#             */
-/*   Updated: 2023/11/22 21:50:46 by fwhite           ###   ########.fr       */
+/*   Updated: 2023/11/23 12:31:33 by fwhite           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdlib.h>
 
-void bzero(void *s, size_t n)
+void ft_bzero(void *s, size_t n)
 {
 	int i;
 	char *str;

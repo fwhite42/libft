@@ -6,14 +6,14 @@
 /*   By: fwhite <fwhite42@pm.me>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:12:34 by fwhite            #+#    #+#             */
-/*   Updated: 2023/11/12 16:16:30 by fwhite           ###   ########.fr       */
+/*   Updated: 2023/11/23 16:04:40 by fwhite           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	isdigit(int character)
+int	ft_isdigit(int character)
 {
 	if (character >= '0' && character <= '9')
-		return (character);
+		return (1);
 	else
-		return (character);
+		return (0);
 }

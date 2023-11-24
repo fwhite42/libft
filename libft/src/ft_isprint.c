@@ -6,13 +6,14 @@
 /*   By: fwhite <fuck_the_norm@four.two>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 00:01:18 by fwhite            #+#    #+#             */
-/*   Updated: 2023/11/16 00:01:24 by fwhite           ###   ########.fr       */
+/*   Updated: 2023/11/23 16:11:18 by fwhite           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-int isprint(char c)
+int ft_isprint(int c)
 {
-	if(c >= 32 && c <= 121)
+	if(c >= 32 && ft_isascii(c))
 		return 1;
 	return (0);
 }
