@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-static int nbr_of_digits(n)
+static int foo0(n)
 {
 	int i;
 	i = 0;
@@ -17,11 +17,11 @@ static int nbr_of_digits(n)
 	return (i);
 }
 
-static void _itoa(char **memory, int n)
+static void foo1(char **memory, int n)
 {
 	if (n > 9)
 	{
-		_itoa(memory, n / 10);
+		foo1(memory, n / 10);
 		*memory = *memory + 1;
 	}
 	**memory = (n % 10) + '0';
@@ -32,9 +32,9 @@ char *ft_itoa(int n)
 	int size;
 	char *memory;
 
-	size = nbr_of_digits(n);
+	size = foo0(n);
 	memory = (char *)malloc(size + 1);
-	_itoa(&memory, n);
+	foo1(&memory, n);
 	return memory - size + 1;
 }
 
