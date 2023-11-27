@@ -1,13 +1,11 @@
 int ft_atoi(const char *str)
 {
-	int i;
 	int nbr;
-	
-	while(str[i])
+	while(*str)
 	{
 		nbr *= 10;
-		nbr += str[i] - '0';
-		i++;
+		nbr += *str - '0';
+		str++;
 	}
 	return (nbr);
 }

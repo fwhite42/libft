@@ -7,7 +7,7 @@ COMPILE				:= gcc
 WITH_FLAGS			:= -Wall -Wextra -Werror
 WITHOUT_LINKING		:= -c
 
-FUNCTIONS			:= atoi bzero
+FUNCTIONS			:= atoi
 
 $(FUNCTIONS):%:./$(OBJECT_DIRECTORY)/ft_%.o
 
