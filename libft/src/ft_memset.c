@@ -1,18 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fwhite <fwhite42@pm.me>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 16:18:59 by fwhite            #+#    #+#             */
-/*   Updated: 2023/11/16 00:02:18 by fwhite           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include"libft.h"
 
 void	*memset(void *string, int value, size_t len)
 {
+	int i;
+	char *ptr;
+
+	i = 0;
+	ptr = string;
 	while(i < len)
-		string[i++] = (unsigned char) value;
+		ptr[i++] = (unsigned char) value;
 	return string;
 }

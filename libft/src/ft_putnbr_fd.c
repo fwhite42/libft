@@ -1,6 +1,6 @@
 #include"libft.h"
 
-int nbr_of_digits(n)
+static int nbr_of_digits(n)
 {
 	int i;
 	i = 0;
@@ -12,10 +12,10 @@ int nbr_of_digits(n)
 	}
 	while(n)
 	{
-		n / 10;
+		n /= 10;
 		i++;
 	}
-	return (i)
+	return (i);
 }
 
 void ft_putnbr_fd(int n, int fd)

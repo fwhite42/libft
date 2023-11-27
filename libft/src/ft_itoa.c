@@ -37,9 +37,3 @@ char *ft_itoa(int n)
 	foo1(&memory, n);
 	return memory - size + 1;
 }
-
-int main(int ac, char **av)
-{
-	char *str = ft_itoa(atoi(av[1]));
-	printf("> %s",str);
-}

@@ -1,12 +1,11 @@
-#include<stdlib.c>
+#include"libft.h"
 
-void *memchr(const void *s, int c, size_t n)
+void *memchr(const void *s,  int c, size_t n)
 {
-	int i;
-
-	i = 0;
-	while (i < n)
-		if (s[i] == c)
-		return s + i;
-	return NULL;
+	unsigned char *bytes = (unsigned char *) s;
+	while(*bytes++ != (unsigned int) c && n--)
+		;
+	if (n == -1)
+		return NULL;
+	return (bytes - 1);
 }

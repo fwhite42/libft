@@ -1,0 +1,8 @@
+NAME := libft.a
+HEADER := libft.a
+COMPILE := gcc -c -Wall -Wextra -Werror
+
+%.o : %.c $(HEADER)
+	$(COMPILE) $<
+
+
