@@ -2,7 +2,7 @@ NAME := libft.a
 
 FILES := $(wildcard *.c)
 
-OBJECTS := $(wildcard *.o)
+OBJECTS := $(wildcard *.o) 
 
 REMOVE_FILE := rm -f
 
@@ -10,11 +10,15 @@ COMPILE := gcc -c
 
 FLAGS := -Wall -Werror -Wextra
 
+%.o : %.c
+	$(COMPILE) $(FLAGS) $<
+
+objects : $(FILES:%.c=%.o)
+
 $(NAME): all
 	ar -rc libft.a $(OBJECTS)
 
-all:
-	$(COMPILE) $(FILES)
+all: objects
 
 clean :
 	$(REMOVE_FILE) $(OBJECTS)
@@ -24,4 +28,4 @@ fclean : clean
 
 re:	fclean all
 
-.PHONY : all clean fclean
+.PHONY : all clean fclean objects

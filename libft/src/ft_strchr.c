@@ -1,5 +1,5 @@
 #include<stdio.h>
-char *ft_strchr(char *s, int c)
+char *ft_strchr(const char *s, int c)
 {
 	if (c == 0)
 	{
@@ -15,13 +15,5 @@ char *ft_strchr(char *s, int c)
 			s++;
 		}
 	}
-	return (s);
-}
-
-
-int main(int ac, char** av)
-{
-
-	char *str = ft_strchr(av[1],*av[2]);
-	printf("%s",str);
+	return ((char *)s);
 }

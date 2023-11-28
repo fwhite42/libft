@@ -2,7 +2,7 @@
 
 void	*ft_memset(void *string, int value, size_t len)
 {
-	int i;
+	size_t i;
 	char *ptr;
 
 	i = 0;

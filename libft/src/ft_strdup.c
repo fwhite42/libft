@@ -2,5 +2,8 @@
 
 char *ft_strdup(const char *s)
 {
-	return (char *)ft_memcpy(malloc(ft_strlen(s)), s);
+	int len;
+
+	len = ft_strlen(s);
+	return (char *)ft_memcpy(malloc(len), s, len);
 }

@@ -2,11 +2,13 @@
 
 void ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	void *addr;
+	t_list *node;
 
-	addr = *lst;
-	del(addr->content);
-	*lst = *lst->next;
-	ft_lstclear(lst, del);
-	free(*addr)
+	while (*lst != NULL)
+	{
+		node = *lst;
+		*lst = node->next;
+		del(node->content);
+		free(node);
+	}
 }

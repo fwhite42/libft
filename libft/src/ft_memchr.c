@@ -2,10 +2,16 @@
 
 void *memchr(const void *s,  int c, size_t n)
 {
-	unsigned char *bytes = (unsigned char *) s;
-	while(*bytes++ != (unsigned int) c && n--)
-		;
-	if (n == -1)
-		return NULL;
-	return (bytes - 1);
+	size_t			i;
+	unsigned char	*str;
+
+	i = 0;
+	str = (unsigned char *)s;
+	while(i < n)
+	{
+		if (*(str + i) == (unsigned char) c)
+			return str + i;
+		i++;
+	}
+	return (NULL);
 }
