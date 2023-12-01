@@ -1,37 +1,33 @@
-NAME			:= libft.a
-HEADER			:= libft.h
+NAME := libft.a
 
-OBJECT_DIRECTORY	:= obj
-SOURCE_DIRECTORY	:= src
-COMPILE			:= gcc
-WITH_FLAGS		:= -Wall -Wextra -Werror
-WITHOUT_LINKING		:= -c
+FILES := $(wildcard *.c)
 
-FUNCTIONS		:= atoi
+OBJECTS := $(wildcard *.o) 
 
-$(FUNCTIONS):%:./$(OBJECT_DIRECTORY)/ft_%.o
+REMOVE_FILE := rm -f
 
-all: $(FUNCTIONS)
+COMPILE := gcc -c
 
-clean:
-	rm -rf $(OBJECT_DIRECTORY)
+FLAGS := -Wall -Werror -Wextra
 
-fclean: clean
-	rm -rf $(NAME)
-	rm -rf $(HEADER).gch
+%.o : %.c
+	$(COMPILE) $(FLAGS) $<
 
-$(OBJECT_DIRECTORY):
-	mkdir $@
-	$(MAKE) all
+OBJECTS := $(FILES:%.c=%.o)
 
-./$(OBJECT_DIRECTORY)/ft_%.o : ./$(SOURCE_DIRECTORY)/ft_%.c $(OBJECT_DIRECTORY) ./$(SOURCE_DIRECTORY)/$(HEADER)
-	echo compiling... $<:
-	$(COMPILE) $(WITHOUT_LINKING)  $< -o $@	
-	echo ...done
+all: $(OBJECTS)
 
-$(NAME): all
-	echo archiving...
-	ar -r $(NAME) $(wildcard $(OBJECT_DIRECTORY)/*)
-	echo ...done
+$(NAME): $(OBJECTS)
+	ar -r $(NAME) $(OBJECTS)
+	$(MAKE) clean
 
-.PHONY: all clean
+clean :
+	$(REMOVE_FILE) $(OBJECTS)
+
+fclean : clean
+	$(REMOVE_FILE) $(NAME)
+	$(REMOVE_FILE) $(wildcard *.gch)
+
+re:	fclean all
+
+.PHONY : all clean fclean objects

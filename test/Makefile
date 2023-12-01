@@ -1,20 +1,44 @@
-COMPILE				:= gcc
+COMPILE				:= gcc -I./include -L./include -lft
 
-BIN := ../bin
+SOURCES := $(wildcard ./src/*.c)
 
-LINK_LIBFT			:= -I/Users/fcandia/libft/libft/src -L/Users/fcandia/libft/libft -lft
+OBJECTS := $(SOURCES:./src/%.c=./obj/%.o)
 
-FUNCTIONS			:= atoi
+TESTS := $(wildecard ./tests/*)
 
-$(FUNCTIONS):%: src/%.c $(BIN)
-	$(COMPILE) $< -o $(BIN)/$* $(LINK_LIBFT)
+tests : $(TESTS)
 
-$(BIN):
-	mkdir $(BIN)
+./tests/%.c:
+	gcc -o ./bin/$*
 
-bin: $(FUNCTIONS)
+objects: $(OBJECTS)
 
+archive: $(OBJECTS)
+	ar -r ./include/libtest.a $(OBJECTS)
+	$(MAKE) clean
+
+./obj/%.o :./src/%.c obj ./include/libft.a
+	$(COMPILE) -c $< -o $@
+
+./include/libft.a:
+	$(MAKE) -C .. libft
+	cp ../libft/libft.h ./include/libft.h;
+	mv ../libft/libft.a ./include/libft.a;
+
+obj:
+	mkdir obj
+bin:
+	mkdir bin
 clean:
-	rm -rf $(BIN)
+	rm -rf obj
+fclean: clean
+	rm ./include/libft*
+	rm ./include/libtest.a
+	rm -rf ../bin
 
-.PHONY: all clean
+../bin:
+	mkdir ../bin
+
+%:./tests/%.c ../bin
+	$(COMPILE) -ltest $< -o ../bin/$*.exe
+.PHONY: objects clean
