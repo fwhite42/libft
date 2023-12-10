@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:04:08 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/10 14:20:13 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:22:20 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*ft_read_word(const char **src, char sep)
 	return (word);
 }
 
-// Recursive split
 void	ft_rsplit(int *i, char ***dst, const char **src, char sep)
 {
 	char	*word;
@@ -61,7 +60,6 @@ void	ft_rsplit(int *i, char ***dst, const char **src, char sep)
 
 char	**ft_split(const char *src, char sep)
 {
-	
 	char	**split;
 	int		i;
 
@@ -70,20 +68,3 @@ char	**ft_split(const char *src, char sep)
 	ft_rsplit(&i, &split, &src, sep);
 	return (split);
 }
-/*
-void	test(char *a, char b)
-{
-	char	**split;
-
-	split = ft_split(a, b);
-	printf("[");
-	while (*split != NULL)
-		printf("'%s', ", *(split++));
-	printf("'%s']\n", *(split));
-}
-
-int main()
-{
-	test("hello!",' ');
-}
-*/
