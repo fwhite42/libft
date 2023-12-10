@@ -1,0 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 10:30:16 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/09 12:41:23 by fwhite42         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include"libft.h"
+
+int	ft_skip_char(char *start, char c)
+{
+	int	i;
+
+	i = 0;
+	while (start[i] == c)
+	{
+		if (start[i] == 0)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_skip_until_char(char *start, char c)
+{
+	int	i;
+
+	i = 0;
+	while (start[i] != c)
+	{
+		if (start[i] == 0)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+
+int	countwords(int wc, char *source, char separator)
+{
+	int jump;
+	int jump2;
+
+	jump = skip(source, separator);
+	if (jump != -1)
+		wc++;
+	source += jump;
+	jump = skip_until(source, separator);
+	if (jump != -1)
+		return countwords(wc, source + jump, separator);
+	return wc;
+}
+
+void	fill(char **destination, char *source, char separator)
+{
+	int jump;
+	jump = skip(source, separator);
+	*destination = source;
+	fill(destination + 1, source, separator);
+}
+
+char	**ft_split(const char *source, char separator)
+{
+	int 	wc;
+	char	**destination;
+
+	wc = countwords(0, (char *)source, separator);
+	printf("%i\n", wc);
+	return NULL;
+}
+
+int main(int ac, char **av)
+{
+	ft_split(av[1], av[2][0]);
+}

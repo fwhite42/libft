@@ -15,7 +15,7 @@ FLAGS := -Wall -Werror -Wextra
 
 OBJECTS := $(FILES:%.c=%.o)
 
-all: $(OBJECTS)
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar -r $(NAME) $(OBJECTS)

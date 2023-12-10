@@ -1,24 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 09:32:56 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/09 09:33:21 by fwhite42         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"libft.h"
+#include<limits.h>
 
-static int nbr_of_digits(n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int i;
-	i = 0;
+	char	digit;
 
-	if (n < 0)
+	if (n == INT_MIN)
 	{
-		n = -n;
-		i++;
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(-(n % 10), fd);
 	}
-	while(n)
+	else if (n < 0)
 	{
-		n /= 10;
-		i++;
+		digit = '-';
+		write(fd, &digit, 1);
+		ft_putnbr_fd(-n, fd);
 	}
-	return (i);
-}
-
-void ft_putnbr_fd(int n, int fd)
-{
-	write(fd, ft_itoa(n), nbr_of_digits(n));
+	else
+	{
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		digit = ((char)(n % 10)) + '0';
+		write(fd, &digit, 1);
+	}
 }

@@ -1,34 +1,63 @@
-COMPILE				:= gcc -I./include -L./include -lft
+COMPILE := gcc -I./include -L./lib
 
-SOURCES := $(wildcard ./src/*.c)
+LINK_LIBFT := -lft
+
+LINK_LIBTEST := -ltest
+
+UTILS := $(wildcard ./utils/*.c)
 
 OBJECTS := $(SOURCES:./src/%.c=./obj/%.o)
 
-TESTS := $(wildecard ./tests/*)
+LIB_DIR := lib
 
-tests : $(TESTS)
+BIN := $(wildecard ./$(BIN_DIR)/*)
+
 
 ./tests/%.c:
 	gcc -o ./bin/$*
 
-objects: $(OBJECTS)
 
 archive: $(OBJECTS)
 	ar -r ./include/libtest.a $(OBJECTS)
 	$(MAKE) clean
 
+# Make object, requires source and libft
 ./obj/%.o :./src/%.c obj ./include/libft.a
-	$(COMPILE) -c $< -o $@
+	$(COMPILE) $(LINK_LIBFT) -c $< -o $@
 
-./include/libft.a:
+# Make all objects
+objects: $(OBJECTS)
+
+#
+# RULES
+#
+
+$(LIB_DIR):
+	mkdir $(LIB_DIR)
+
+
+
+
+
+$(TESTS):
+
+
+./lib/libtest.a: $(OBJECTS) $(LIB_DIR)
+	ac -r ./lib/libtest.a $(OBJECTS)
+
+
+
+
+libtest: ./lib/libtest.a clean
+
+./lib/libft.a:
 	$(MAKE) -C .. libft
 	cp ../libft/libft.h ./include/libft.h;
 	mv ../libft/libft.a ./include/libft.a;
 
 obj:
 	mkdir obj
-bin:
-	mkdir bin
+
 clean:
 	rm -rf obj
 fclean: clean
@@ -39,6 +68,8 @@ fclean: clean
 ../bin:
 	mkdir ../bin
 
-%:./tests/%.c ../bin
+%:./tests/%.c ../bin .
 	$(COMPILE) -ltest $< -o ../bin/$*.exe
+
+
 .PHONY: objects clean

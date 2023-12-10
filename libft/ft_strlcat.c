@@ -1,27 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 08:45:41 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/09 08:45:45 by fwhite42         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"libft.h"
 
-/*
- * @brief concatenate two string
- * @param dst address of the first character of first string
- * @param src address of the first character of second string
- * @param size of the buffer
- * @return length of dst + lengh of src
- */
-size_t strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t len;
+	size_t	len;
+	size_t	tot;
 
-	i = 0;
 	len = ft_strlen(dst);
-	while(i < size - 1)
+	tot = ft_strlen(dst) + ft_strlen(src);
+	if (dstsize < len)
+		return (dstsize + (tot - len));
+	dst += len;
+	while (dstsize-- > len + 1 && *src)
 	{
-		dst[i + len] = src[i];
-		i++;
+		*(dst++) = *(src++);
 	}
-	dst[i] = 0;
-	while(src[i])
-		i++;
-
-	return (i);
+	*dst = 0;
+	return (tot);
 }

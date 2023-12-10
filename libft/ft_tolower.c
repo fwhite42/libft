@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tolower.c                                          :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite <fwhite42@pm.me>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:56:20 by fwhite            #+#    #+#             */
-/*   Updated: 2023/11/14 12:03:50 by fwhite           ###   ########.fr       */
+/*   Updated: 2023/12/09 08:40:02 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int isupper(char c)
+static inline int	ft_isuppercase(char c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
-int tolower(int c)
+int	ft_tolower(int c)
 {
-	if (isupper(c))
+	if (ft_isuppercase(c))
 		c += 'a' - 'A';
-	return c;
+	return (c);
 }
