@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:04:08 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/10 12:16:43 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:11:01 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_rsplit(int *i, char ***dst, const char **src, char sep)
 		*i = -1;
 	else if (*dst == NULL && *word == 0)
 	{
-		*dst = (char **)malloc(*i + 1);
+		*dst = (char **)malloc((*i + 1) * sizeof(char *));
 		if (*dst == NULL)
 			*i = -1;
 		word = NULL;
@@ -60,24 +60,29 @@ void	ft_rsplit(int *i, char ***dst, const char **src, char sep)
 
 char	**ft_split(const char *src, char sep)
 {
-	int		i;
+	
 	char	**split;
+	int		i;
 
 	i = 0;
 	split = NULL;
 	ft_rsplit(&i, &split, &src, sep);
 	return (split);
 }
-
-int	main(int ac, char **av)
+/*
+void	test(char *a, char b)
 {
 	char	**split;
 
-	if (ac < 3)
-		return (1);
-	split = ft_split(av[1], av[2][0]);
+	split = ft_split(a, b);
 	printf("[");
 	while (*split != NULL)
 		printf("'%s', ", *(split++));
-	printf("'%s']", *(split));
+	printf("'%s']\n", *(split));
 }
+
+int main()
+{
+	test("hello!",' ');
+}
+*/
