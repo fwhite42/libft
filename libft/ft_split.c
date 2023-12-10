@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:04:08 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/10 14:11:01 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:20:13 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_rsplit(int *i, char ***dst, const char **src, char sep)
 		*dst = (char **)malloc((*i + 1) * sizeof(char *));
 		if (*dst == NULL)
 			*i = -1;
+		free(word);
 		word = NULL;
 	}
 	else if (*dst == NULL && *word != 0)
