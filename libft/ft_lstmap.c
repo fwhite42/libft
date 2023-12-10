@@ -6,38 +6,88 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:31:37 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/09 09:32:36 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:57:28 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-
-static inline t_list	*morph(t_list *node, void *(*f)(void *))
-{
-	return (ft_lstnew(f(node->content)));
-}
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*node;
 	t_list	*first;
 
-	if (!lst)
+	if (!lst | !f)
 		return (NULL);
-	node = morph(lst, f);
-	if (!node)
-		return (NULL);
-	first = node;
-	while (lst->next)
+	first = NULL;
+	while (lst)
 	{
-		node->next = morph(lst->next, f);
-		if (node->next == NULL)
+		node = ft_lstnew(f(lst->content));
+		if (node == NULL)
 		{
 			ft_lstclear(&first, del);
 			return (NULL);
 		}
+		ft_lstadd_back(&first, node);
 		lst = lst->next;
-		node = node->next;
 	}
 	return (first);
 }
+
+
+/*
+ *
+ *#include "libft.h"
+
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+    t_list *first = NULL;
+    t_list *new_node;
+
+    if (!lst || !f)
+        return (NULL);
+
+    while (lst)
+    {
+        new_node = ft_lstnew(f(lst->content));
+        if (!new_node)
+        {
+            ft_lstclear(&first, del);
+            return (NULL);
+        }
+
+        ft_lstadd_back(&first, new_node);
+        lst = lst->next;
+    }
+
+    return (first);
+}
+
+void ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+    if (!lst || !del)
+        return;
+
+    del(lst->content);
+    free(lst);
+}
+
+void ft_lstclear(t_list **lst, void (*del)(void *))
+{
+    if (!lst || !del || !(*lst))
+        return;
+
+    t_list *current = *lst;
+    t_list *next_node;
+
+    while (current)
+    {
+        next_node = current->next;
+        ft_lstdelone(current, del);
+        current = next_node;
+    }
+
+    *lst = NULL;
+}
+
+ * */

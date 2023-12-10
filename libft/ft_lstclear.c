@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:29:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/09 09:29:26 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:45:21 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*node;
 
-	while (*lst != NULL)
+	if (lst == NULL)
+		return ;
+	while (*lst)
 	{
-		node = *lst;
-		*lst = node->next;
-		del(node->content);
-		free(node);
+		node = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = node;
 	}
+	free(*lst);
+	*lst = NULL;
 }

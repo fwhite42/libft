@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:34:39 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/09 09:34:43 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:46:30 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
+	if (!lst || !del)
+		return ;
 	del(lst->content);
 	free(lst);
 }
