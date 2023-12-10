@@ -6,92 +6,78 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:04:08 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/10 00:47:04 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/10 12:16:43 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
-/*
- * Increments the address of the first char of the string pointed by source,
- * until a non-separating char is met
- * */
-void	ft_trim_start(char **source, char separator)
-{
-	while (**source == separator && **source != 0)
-		(*source)++;
-}
 
-char	*ft_readword(char **source, char separator)
+#include"libft.h"
+
+char	*ft_read_word(const char **src, char sep)
 {
-	int		word_length;
+	int		len;
 	char	*word;
 
-	printf("Reading from '%s'\n", *source);
-	ft_trim_start(source, separator);
-	printf("After Trim: '%s'\n", *source);
-	word_length = 0;
-	while ((*source)[word_length] != separator && (*source)[word_length] != 0)
-		word_length++;
-	printf("Computing Word Length : %i\n", word_length);
-	word = (char *)malloc(word_length + 1);
+	len = 0;
+	while (**src == sep && **src != 0)
+		(*src)++;
+	while ((*src)[len] != sep && (*src)[len] != 0)
+		len++;
+	word = (char *)malloc(len + 1);
 	if (!word)
 		return (NULL);
-	ft_strlcpy(word, *source, word_length + 1);
-	*source += word_length;
+	ft_strlcpy(word, *src, len + 1);
+	*src += len;
 	return (word);
 }
 
 // Recursive split
-void	ft_rsplit(int i, char ***destination, char **source, char separator)
+void	ft_rsplit(int *i, char ***dst, const char **src, char sep)
 {
 	char	*word;
+	int		j;
 
-	printf("%i)\n", i);
-	word = ft_readword(source, separator);
-	printf("> '%s'\n", word);
-	printf("Updated Source: '%s'\n", *source);
-	if (!word)
-		return ;
-	if (*destination == NULL)
+	j = *i;
+	word = ft_read_word(src, sep);
+	if (*dst == NULL && word == NULL )
+		*i = -1;
+	else if (*dst == NULL && *word == 0)
 	{
-		printf("No Split Buffer Found\n");
-		if (*word == 0)
-		{
-			word = NULL;
-			printf("Allocating %i + 1 bytes...\n", i);
-			*destination = (char **)malloc(i + 1);
-			if (!*destination)
-				return ;
-		}
-		else
-			ft_rsplit(i + 1, destination, (char **)source, separator);
+		*dst = (char **)malloc(*i + 1);
+		if (*dst == NULL)
+			*i = -1;
+		word = NULL;
 	}
-	printf("Storing word '%s' at position %i...\n", word, i);
-	(*destination)[i] = word;
-	printf("...done\n");
+	else if (*dst == NULL && *word != 0)
+	{
+		(*i)++;
+		ft_rsplit(i, dst, src, sep);
+	}
+	if (*i < 0)
+		free(word);
+	else
+		(*dst)[j] = word;
 }
 
-char	**ft_split(const char *source, char separator)
+char	**ft_split(const char *src, char sep)
 {
-	char	***destination;
+	int		i;
+	char	**split;
 
-	*destination = NULL;
-	(ft_rsplit(0, destination, (char **)&source, separator));
-	return *destination;
+	i = 0;
+	split = NULL;
+	ft_rsplit(&i, &split, &src, sep);
+	return (split);
 }
 
 int	main(int ac, char **av)
 {
 	char	**split;
-	int		i;
 
-	i = 0;
+	if (ac < 3)
+		return (1);
 	split = ft_split(av[1], av[2][0]);
-	printf("Split Done\n");
-	while (1)
-	{
-		printf(" > %s\n",*split);
-		if(*split++ == NULL)
-			break;
-	}
-	return (1);
+	printf("[");
+	while (*split != NULL)
+		printf("'%s', ", *(split++));
+	printf("'%s']", *(split));
 }
