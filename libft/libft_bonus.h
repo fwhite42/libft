@@ -6,14 +6,14 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:59:38 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/11 22:18:44 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/12 09:06:00 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_BONUS_H
 # define LIBFT_BONUS_H
 # include "libft.h"
-
+/*
 // Bonus
 typedef struct s_list
 {
@@ -29,5 +29,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
+*/
 #endif

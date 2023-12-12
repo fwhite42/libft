@@ -6,11 +6,11 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 08:38:55 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/09 08:39:36 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:04:06 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static inline int	ft_islowercase(char c)
+static int	ft_islowercase(char c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (1);
