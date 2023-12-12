@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 09:29:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/10 17:45:21 by fwhite42         ###   ########.fr       */
+/*   Created: 2023/12/09 09:38:30 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/11 22:20:56 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"libft_bonus.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*node;
+	int	i;
 
-	if (lst == NULL)
-		return ;
-	while (*lst)
+	i = 1;
+	if (!lst)
+		return (0);
+	while (lst->next != NULL)
 	{
-		node = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = node;
+		lst = lst->next;
+		i++;
 	}
-	free(*lst);
-	*lst = NULL;
+	return (i);
 }

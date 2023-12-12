@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 09:36:22 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/09 09:37:03 by fwhite42         ###   ########.fr       */
+/*   Created: 2023/12/09 09:29:42 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/11 22:18:14 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"libft_bonus.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-	{
-		lst = lst->next;
-	}
-	return (lst);
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

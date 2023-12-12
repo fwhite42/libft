@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 09:38:30 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/09 09:38:44 by fwhite42         ###   ########.fr       */
+/*   Created: 2023/12/09 09:31:37 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/11 22:19:40 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"libft_bonus.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
+	t_list	*node;
+	t_list	*first;
+	void	*tmp;
 
-	i = 1;
-	if (!lst)
-		return (0);
-	while (lst->next != NULL)
+	if (!lst || !f)
+		return (NULL);
+	first = NULL;
+	while (lst)
 	{
+		tmp = f(lst->content);
+		node = ft_lstnew(tmp);
+		if (node == NULL)
+		{
+			del(tmp);
+			ft_lstclear(&first, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&first, node);
 		lst = lst->next;
-		i++;
 	}
-	return (i);
+	return (first);
 }

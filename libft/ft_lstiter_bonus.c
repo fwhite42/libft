@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 09:34:39 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/10 17:46:30 by fwhite42         ###   ########.fr       */
+/*   Created: 2023/12/09 09:31:05 by fwhite42          #+#    #+#             */
+/*   Updated: 2023/12/11 22:19:17 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"libft_bonus.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !del)
+	if (!lst)
 		return ;
-	del(lst->content);
-	free(lst);
+	f(lst->content);
+	if (lst->next)
+		ft_lstiter(lst->next, f);
 }

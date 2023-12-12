@@ -1,8 +1,55 @@
-NAME := libft.a
+NAME	:=	libft.a
 
-FILES := $(wildcard *.c)
+FILES		:=			\
+	ft_atoi.c			\
+	ft_bzero.c			\
+	ft_calloc.c			\
+	ft_isalnum.c		\
+	ft_isalpha.c 		\
+	ft_isascii.c 		\
+	ft_isdigit.c 		\
+	ft_isprint.c 		\
+	ft_itoa.c 			\
+	ft_memchr.c 		\
+	ft_memcmp.c 		\
+	ft_memcpy.c 		\
+	ft_memmove.c 		\
+	ft_memset.c 		\
+	ft_putchar_fd.c		\
+	ft_putendl_fd.c		\
+	ft_putnbr_fd.c		\
+	ft_putstr_fd.c		\
+	ft_split.c			\
+	ft_strchr.c			\
+	ft_strdup.c			\
+	ft_striteri.c		\
+	ft_strjoin.c		\
+	ft_strlcat.c		\
+	ft_strlcpy.c		\
+	ft_strlen.c			\
+	ft_strmapi.c		\
+	ft_strncmp.c		\
+	ft_strnstr.c		\
+	ft_strrchr.c 		\
+	ft_strtrim.c		\
+	ft_substr.c			\
+	ft_tolower.c		\
+	ft_toupper.c 
 
-OBJECTS := $(wildcard *.o) 
+BONUS_FILES		:= 			\
+	ft_lstadd_back_bonus.c	\
+	ft_lstadd_front_bonus.c	\
+	ft_lstclear_bonus.c		\
+	ft_lstdelone_bonus.c	\
+	ft_lstiter_bonus.c		\
+	ft_lstlast_bonus.c		\
+	ft_lstmap_bonus.c		\
+	ft_lstnew_bonus.c		\
+	ft_lstsize_bonus.c
+
+OBJECTS := $(FILES:%.c=%.o) 
+
+BONUS_OBJECTS := $(BONUS_FILES:%.c=%.o)
 
 REMOVE_FILE := rm -f
 
@@ -13,21 +60,21 @@ FLAGS := -Wall -Werror -Wextra
 %.o : %.c
 	$(COMPILE) $(FLAGS) $<
 
-OBJECTS := $(FILES:%.c=%.o)
-
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar -r $(NAME) $(OBJECTS)
-	$(MAKE) clean
+	ar -rc $(NAME) $(OBJECTS)
 
 clean :
-	$(REMOVE_FILE) $(OBJECTS)
+	$(REMOVE_FILE) $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean : clean
 	$(REMOVE_FILE) $(NAME)
 	$(REMOVE_FILE) $(wildcard *.gch)
 
+bonus : $(NAME) $(BONUS_OBJECTS)
+	ar -rc $(NAME) $(BONUS_OBJECTS)
+
 re:	fclean all
 
-.PHONY : all clean fclean objects
+.PHONY : all clean fclean objects bonus
