@@ -6,11 +6,11 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:31:37 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/11 22:19:40 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:17:25 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft_bonus.h"
+#include"libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

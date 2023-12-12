@@ -6,11 +6,11 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:29:42 by fwhite42          #+#    #+#             */
-/*   Updated: 2023/12/11 22:18:14 by fwhite42         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:16:16 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft_bonus.h"
+#include"libft.h"
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
