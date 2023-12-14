@@ -95,11 +95,14 @@ $(NAME): $(OBJECTS)
 	@printf "$(OK)\n"
 
 clean :
+	@printf "Removing objects ... "
 	$(REMOVE_FILE) $(OBJECTS) $(BONUS_OBJECTS)
+	@printf "$(OK)\n"
 
 fclean : clean
+	@printf "Removing $(NAME) ... "
 	$(REMOVE_FILE) $(NAME)
-	$(REMOVE_FILE) $(wildcard *.gch)
+	@printf "$(OK)\n"
 
 bonus : $(NAME) $(BONUS_OBJECTS)
 	@printf "Adding bonus functions to $(NAME) ... "
