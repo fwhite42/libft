@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include"libft.h"
+#include<stdlib.h>
 
 char	*ft_substr(char const *source, unsigned int start, size_t len)
 {

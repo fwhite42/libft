@@ -12,6 +12,7 @@
 
 #include"libft.h"
 #include<limits.h>
+#include<stdlib.h>
 
 static int	_len(int n)
 {

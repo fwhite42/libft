@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include"libft.h"
+#include<stdlib.h>
 
 char	*ft_read_word(const char **src, char sep)
 {
